@@ -1,5 +1,7 @@
 
 env
 *.swp
-githubapi
+gitapi
+__pycache__
+
 
