@@ -1,6 +1,7 @@
 
 import urllib.request as urllib2
-from client import api,sendreq,pluck
+import simplejson as json
+from client import api,sendreq,pluck,githubusername
 
 def userrepositories():
     req=urllib2.Request(''.join([api,'/user/repos']))

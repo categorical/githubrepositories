@@ -49,8 +49,8 @@ _usage(){
 }
 
 case $1 in
-    '--install')_install;;
-    '--deploy')_deploy;;
+    --install)_install;;
+    --deploy)_deploy;;
     *)_usage;;
 esac
 
