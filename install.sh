@@ -33,7 +33,8 @@ _deploy()(
 		EOF
         } \
         && chmod u+x "$runname" \
-        && ln -sf "$thisdir/$runname" "$bindir"
+        && { [ ! -d "$bindir" ] \
+            ||ln -sf "$thisdir/$runname" "$bindir";}
 
 )
 
