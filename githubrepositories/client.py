@@ -9,6 +9,17 @@ import os
 api='https://api.github.com'
 githubusername='categorical'
 githubpassword=os.getenv('githubpassword')
+# https://developer.github.com/changes/2020-02-14-deprecating-password-auth/
+githubpat=os.path.join(os.getenv('HOME'),'.gitapitoken')
+
+def tokenauthentication():
+    with open(githubpat,'r') as f:
+        for line in f:
+            if line.strip():
+                credentials='%s'%(line.strip(),)
+                break
+    header=('Authorization','token %s'%(credentials,))
+    return header
 
 def basicauthentication():
     credentials='%s:%s'%(githubusername,githubpassword)
@@ -17,7 +28,8 @@ def basicauthentication():
     return header
 
 def sendreq(req):
-    req.add_header(*basicauthentication())
+    #req.add_header(*basicauthentication())
+    req.add_header(*tokenauthentication())
     logging.info('%s %s'%(req.get_method(),req.get_full_url()))
     
     try:
