@@ -3,14 +3,14 @@
 thisdir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 
-bindir="$HOME/bin"
+bindir='D:\bin'
 envname='env'
 
 runname='gitapi'
 script=$thisdir/githubrepositories
-python=$thisdir/$envname/bin/python
-pip=$thisdir/$envname/bin/pip
-#scriptw=$(cygpath -w "$script")
+python=$thisdir/$envname/Scripts/python
+pip=$thisdir/$envname/Scripts/pip
+scriptw=$(cygpath -w "$script")
 
 
 _install()(
@@ -25,7 +25,7 @@ _deploy()(
     cd "$thisdir" \
         && { cat<<-EOF>"$runname"
 		#!/bin/bash
-		exec '$python' '$script' \\
+		exec '$python' '$scriptw' \\
 		EOF
         } \
         && { cat<<-EO'F'>>"$runname"
