@@ -3,7 +3,7 @@
 thisdir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 
-bindir='D:\bin'
+bindir='d:\bin'
 envname='env'
 
 runname='gitapi'
