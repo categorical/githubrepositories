@@ -3,14 +3,24 @@
 thisdir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 
-bindir='d:\bin'
+isx=
+case "$(uname -s)" in 'Linux')isx='t';; esac
+declare -p 'isx'
+
+bindir="$HOME/bin"
 envname='env'
 
 runname='gitapi'
 script=$thisdir/githubrepositories
+python=$thisdir/$envname/bin/python
+pip=$thisdir/$envname/bin/pip
+
+if [ ! "$isx" = 't' ];then
 python=$thisdir/$envname/Scripts/python
 pip=$thisdir/$envname/Scripts/pip
-scriptw=$(cygpath -w "$script")
+script=$(cygpath -w "$script")
+bindir='d:\bin'
+fi
 
 
 _install()(
@@ -25,7 +35,7 @@ _deploy()(
     cd "$thisdir" \
         && { cat<<-EOF>"$runname"
 		#!/bin/bash
-		exec '$python' '$scriptw' \\
+		exec '$python' '$script' \\
 		EOF
         } \
         && { cat<<-EO'F'>>"$runname"
