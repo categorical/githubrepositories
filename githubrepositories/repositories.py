@@ -31,5 +31,12 @@ def createrepository(name,private=False):
     items=pluck(items,repositorynormaliser())
     return items[0]
 
-   
-
+def setprivate(name,b=False):
+    msg={'private':not b}
+    msg=json.dumps(msg).encode('ascii')
+    req=urllib2.Request(
+            '/'.join([api,'repos',githubusername,name])
+            ,data=msg
+            ,method='PATCH')
+    items=pluck([sendreq(req)],repositorynormaliser())
+    return items[0]
